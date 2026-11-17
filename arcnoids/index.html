@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Arcnoids</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500&family=Manrope:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme: dark;
+  --bg:#080b1a; --bg2:#0f1430; --ink:#e8eeff; --mute:#8d97bd;
+  --arc:#6fe3ff; --spark:#ff6b3d; --line:rgba(111,227,255,.22);
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+*{box-sizing:border-box;margin:0}
+body{background:radial-gradient(ellipse at 70% 40%,var(--bg2),var(--bg) 70%);color:var(--ink);font-family:Manrope,system-ui,sans-serif;min-height:100%;overflow-x:hidden}
+#gl{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+main{position:relative;z-index:1}
+.hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;padding:28px clamp(20px,5vw,64px) 40px}
+nav{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--mute)}
+.logo{font-family:Unbounded,sans-serif;font-weight:500;color:var(--ink);font-size:16px;letter-spacing:.02em;display:flex;align-items:center;gap:10px}
+.logo svg{width:30px;height:30px;flex:none}
+.status{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);padding:8px 16px;border-radius:99px;backdrop-filter:blur(8px);background:rgba(8,11,26,.4)}
+.status b{width:8px;height:8px;border-radius:50%;background:var(--spark);box-shadow:0 0 12px var(--spark);animation:pulse 2.2s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.35}}
+.copy{max-width:640px;padding:12vh 0 4vh}
+h1{font-family:Unbounded,sans-serif;font-weight:300;font-size:clamp(44px,9.5vw,128px);line-height:.95;letter-spacing:-.03em;text-shadow:0 0 60px rgba(111,227,255,.25);animation:rise 1.4s cubic-bezier(.2,.7,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(28px);filter:blur(10px)}}
+.lede{margin-top:28px;font-size:clamp(16px,1.6vw,20px);line-height:1.6;color:var(--mute);max-width:44ch;font-weight:300;animation:rise 1.4s .25s cubic-bezier(.2,.7,.2,1) both}
+.lede em{color:var(--ink);font-style:normal}
+.foot{display:flex;flex-wrap:wrap;gap:16px 40px;justify-content:space-between;align-items:flex-end;font-size:13px;color:var(--mute)}
+.btn{font:600 14px Manrope,sans-serif;color:var(--bg);background:var(--arc);border:0;padding:14px 26px;border-radius:99px;text-decoration:none;box-shadow:0 0 32px rgba(111,227,255,.4);transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 0 48px rgba(111,227,255,.65)}
+.btn:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.about{padding:14vh clamp(20px,5vw,64px) 16vh;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:40px;max-width:1100px}
+.about div{border-left:1px solid var(--line);padding-left:20px;backdrop-filter:blur(2px)}
+.about h2{font-family:Unbounded,sans-serif;font-weight:500;font-size:16px;margin-bottom:10px}
+.about p{color:var(--mute);line-height:1.6;font-size:15px;font-weight:300}
+@media(prefers-reduced-motion:reduce){h1,.lede,.status b{animation:none}}
+</style>
+</head>
+<body>
+<canvas id="gl" aria-hidden="true"></canvas>
+<main>
+  <section class="hero">
+    <nav>
+      <span class="logo"><svg viewBox="0 0 48 48" fill="none" stroke-linecap="round" aria-hidden="true"><circle cx="24" cy="24" r="20" stroke="#6fe3ff" stroke-width="3" stroke-dasharray="40 86" transform="rotate(60 24 24)"/><circle cx="24" cy="24" r="13.5" stroke="#6fe3ff" stroke-width="3" stroke-dasharray="58 27" transform="rotate(-120 24 24)" opacity=".75"/><circle cx="24" cy="24" r="5" fill="#ff6b3d"/></svg>arcnoids</span>
+      <span class="status"><b></b>Coming soon</span>
+    </nav>
+    <div class="copy">
+      <h1>arc<br>noids</h1>
+      <p class="lede">Something new is taking shape. <em>Arcnoids</em> brings intelligent, motion-driven form into the world, built piece by piece and arriving soon.</p>
+    </div>
+    <div class="foot">
+      <a class="btn" href="mailto:hello@arcnoids.com?subject=Arcnoids%20updates">Get launch updates</a>
+      <span>Move your cursor to turn the core.</span>
+    </div>
+  </section>
+  <section class="about">
+    <div><h2>Built in motion</h2><p>Every part of Arcnoids is designed to move, adapt and respond.</p></div>
+    <div><h2>Precise by design</h2><p>Clean geometry and careful engineering sit at the centre of the project.</p></div>
+    <div><h2>Launching soon</h2><p>The full site, details and first release are on their way.</p></div>
+  </section>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  if(!window.THREE){return;}
+  var canvas=document.getElementById('gl');
+  var renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true});
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+  var scene=new THREE.Scene();
+  var camera=new THREE.PerspectiveCamera(45,1,.1,100);
+  camera.position.z=7;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var group=new THREE.Group(); scene.add(group);
+
+  var core=new THREE.Mesh(
+    new THREE.IcosahedronGeometry(1.15,1),
+    new THREE.MeshStandardMaterial({color:0x10163a,metalness:.9,roughness:.25,flatShading:true})
+  );
+  group.add(core);
+  var wire=new THREE.Mesh(
+    new THREE.IcosahedronGeometry(1.2,1),
+    new THREE.MeshBasicMaterial({color:0x6fe3ff,wireframe:true,transparent:true,opacity:.35})
+  );
+  group.add(wire);
+  var inner=new THREE.Mesh(
+    new THREE.SphereGeometry(.45,32,32),
+    new THREE.MeshBasicMaterial({color:0xff6b3d})
+  );
+  group.add(inner);
+
+  var rings=[];
+  var specs=[[1.9,.025,5.2,0x6fe3ff,.4,.2],[2.4,.03,4.2,0x6fe3ff,1.2,-.5],[2.9,.02,3.6,0xff6b3d,2.1,.35]];
+  specs.forEach(function(s,i){
+    var m=new THREE.Mesh(
+      new THREE.TorusGeometry(s[0],s[1],12,160,s[2]),
+      new THREE.MeshBasicMaterial({color:s[3]})
+    );
+    m.rotation.x=s[4]; m.rotation.y=s[5];
+    m.userData.speed=(i%2?-1:1)*(.25+i*.12);
+    group.add(m); rings.push(m);
+  });
+
+  var N=500, pos=new Float32Array(N*3);
+  for(var i=0;i<N;i++){
+    var r=4+Math.random()*8, a=Math.random()*6.283, b=Math.acos(2*Math.random()-1);
+    pos[i*3]=r*Math.sin(b)*Math.cos(a); pos[i*3+1]=r*Math.sin(b)*Math.sin(a); pos[i*3+2]=r*Math.cos(b)-2;
+  }
+  var pg=new THREE.BufferGeometry();
+  pg.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  var pts=new THREE.Points(pg,new THREE.PointsMaterial({color:0xaee8ff,size:.03,transparent:true,opacity:.7}));
+  scene.add(pts);
+
+  scene.add(new THREE.AmbientLight(0x404a80,.8));
+  var l1=new THREE.PointLight(0x6fe3ff,3,20); l1.position.set(4,3,5); scene.add(l1);
+  var l2=new THREE.PointLight(0xff6b3d,2.5,20); l2.position.set(-4,-2,3); scene.add(l2);
+
+  var mx=0,my=0,tx=0,ty=0;
+  window.addEventListener('pointermove',function(e){
+    tx=(e.clientX/window.innerWidth-.5); ty=(e.clientY/window.innerHeight-.5);
+  });
+
+  function resize(){
+    var w=window.innerWidth,h=window.innerHeight;
+    renderer.setSize(w,h,false);
+    camera.aspect=w/h;
+    var wide=w>800;
+    group.position.x=wide?2.2:0;
+    group.position.y=wide?0:1.4;
+    group.scale.setScalar(wide?1:.7);
+    camera.updateProjectionMatrix();
+  }
+  window.addEventListener('resize',resize); resize();
+
+  var clock=new THREE.Clock();
+  function tick(){
+    var t=clock.getElapsedTime();
+    var k=reduce?0:1;
+    mx+=(tx-mx)*.05; my+=(ty-my)*.05;
+    core.rotation.y=wire.rotation.y=t*.25*k+mx*1.5;
+    core.rotation.x=wire.rotation.x=t*.12*k+my*1.2;
+    inner.scale.setScalar(1+Math.sin(t*2)*.08*k);
+    rings.forEach(function(r){r.rotation.z+=r.userData.speed*.01*k;});
+    group.rotation.y=mx*.4; group.rotation.x=my*.3;
+    pts.rotation.y=t*.02*k;
+    camera.position.x=mx*.6; camera.position.y=-my*.4; camera.lookAt(0,0,0);
+    renderer.render(scene,camera);
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
+</script>
+</body>
+</html>
