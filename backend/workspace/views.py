@@ -2,7 +2,7 @@ from rest_framework import viewsets
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.permissions import IsAuthenticated
 from accounts.models import User
-from accounts.permissions import IsAdminOrManager, IsAdminManagerOrReadOnlyEmployee, IsWorkspaceAdmin
+from accounts.permissions import IsAdminOrManager, IsAdminManagerOrReadOnlyEmployee, IsAdminManagerOrReadOnly, IsWorkspaceAdmin
 from accounts.serializers import UserSerializer, TeamCreateSerializer
 from .models import Client, Project, Task, Enquiry
 from .serializers import ClientSerializer, ProjectSerializer, TaskSerializer, EnquirySerializer
@@ -13,7 +13,7 @@ class ClientViewSet(viewsets.ModelViewSet):
     def perform_create(self,serializer): serializer.save(created_by=self.request.user)
 class ProjectViewSet(viewsets.ModelViewSet):
     serializer_class=ProjectSerializer
-    permission_classes=[IsAuthenticated,IsAdminManagerOrReadOnlyEmployee]
+    permission_classes=[IsAuthenticated,IsAdminManagerOrReadOnly]
     def get_queryset(self):
         qs=Project.objects.select_related("client").prefetch_related("members").order_by("-created_at")
         if self.request.user.is_workspace_admin or self.request.user.role=="MANAGER": return qs
