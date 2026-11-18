@@ -1,5 +1,7 @@
 import os
 from django.core.management.base import BaseCommand, CommandError
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
 from accounts.models import User
 class Command(BaseCommand):
     help = "Create the first Arcnoids workspace owner from environment variables."
