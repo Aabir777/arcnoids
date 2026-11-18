@@ -1,6 +1,14 @@
 {
   "rewrites": [
     {
+      "source": "/workspace",
+      "destination": "/arcnoids/workspace/index.html"
+    },
+    {
+      "source": "/workspace/:path*",
+      "destination": "/arcnoids/workspace/index.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/arcnoids/index.html"
     }
