@@ -1,150 +1,221 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#080b1a">
-<meta name="description" content="Arcnoids is taking shape. Intelligent, motion-driven digital experiences, built piece by piece.">
-<title>Arcnoids — Coming Soon</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#08090c">
+<meta name="description" content="Arcnoids brings website creation, creative services, marketing, software and AI automation together in one digital business ecosystem.">
+<meta property="og:title" content="Arcnoids — Build your digital world">
+<meta property="og:description" content="One ecosystem to build, manage, automate and grow your business.">
+<meta property="og:type" content="website">
+<title>Arcnoids — Build your digital world</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500&family=Manrope:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{color-scheme:dark;--bg:#080b1a;--bg2:#0f1430;--ink:#e8eeff;--mute:#8d97bd;--arc:#6fe3ff;--spark:#ff6b3d;--line:rgba(111,227,255,.22)}
-*{box-sizing:border-box;margin:0}
-html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
-body{background:radial-gradient(ellipse at 70% 40%,var(--bg2),var(--bg) 70%);color:var(--ink);font-family:Manrope,system-ui,sans-serif;min-height:100%;overflow-x:hidden}
-#gl{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
-main{position:relative;z-index:1}
-.hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:space-between;padding:28px clamp(20px,5vw,64px) 40px}
-nav{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--mute);gap:16px}
-.logo{font-family:Unbounded,sans-serif;font-weight:500;color:var(--ink);font-size:16px;letter-spacing:.02em;display:flex;align-items:center;gap:10px}
-.logo svg{width:30px;height:30px;flex:none}
-.status{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);padding:8px 16px;border-radius:99px;backdrop-filter:blur(8px);background:rgba(8,11,26,.4);white-space:nowrap}
-.status b{width:8px;height:8px;border-radius:50%;background:var(--spark);box-shadow:0 0 12px var(--spark);animation:pulse 2.2s ease-in-out infinite}
-@keyframes pulse{50%{opacity:.35}}
-.copy{max-width:640px;padding:12vh 0 4vh}
-h1{font-family:Unbounded,sans-serif;font-weight:300;font-size:clamp(44px,9.5vw,128px);line-height:.95;letter-spacing:-.03em;text-shadow:0 0 60px rgba(111,227,255,.25);animation:rise 1.4s cubic-bezier(.2,.7,.2,1) both}
-@keyframes rise{from{opacity:0;transform:translateY(28px);filter:blur(10px)}}
-.lede{margin-top:28px;font-size:clamp(16px,1.6vw,20px);line-height:1.6;color:var(--mute);max-width:44ch;font-weight:300;animation:rise 1.4s .25s cubic-bezier(.2,.7,.2,1) both}
-.lede em{color:var(--ink);font-style:normal}
-.foot{display:flex;flex-wrap:wrap;gap:16px 40px;justify-content:space-between;align-items:flex-end;font-size:13px;color:var(--mute)}
-.btn{display:inline-flex;justify-content:center;align-items:center;font:600 14px Manrope,sans-serif;color:var(--bg);background:var(--arc);border:0;padding:14px 26px;border-radius:99px;text-decoration:none;box-shadow:0 0 32px rgba(111,227,255,.4);transition:transform .2s,box-shadow .2s;cursor:pointer}
-.btn:hover{transform:translateY(-2px);box-shadow:0 0 48px rgba(111,227,255,.65)}
-.btn:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
-.btn:disabled{opacity:.65;cursor:wait;transform:none}
-.about{padding:14vh clamp(20px,5vw,64px) 16vh;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:40px;max-width:1100px}
-.about div{border-left:1px solid var(--line);padding-left:20px;backdrop-filter:blur(2px)}
-.about h2{font-family:Unbounded,sans-serif;font-weight:500;font-size:16px;margin-bottom:10px}
-.about p{color:var(--mute);line-height:1.6;font-size:15px;font-weight:300}
-button.btn{cursor:pointer}
-dialog{margin:auto;border:1px solid var(--line);border-radius:20px;background:var(--bg2);color:var(--ink);padding:32px;width:min(92vw,420px)}
-dialog::backdrop{background:rgba(4,6,16,.7);backdrop-filter:blur(6px)}
-dialog h2{font-family:Unbounded,sans-serif;font-weight:500;font-size:20px;margin-bottom:10px}
-dialog p{color:var(--mute);font-size:15px;line-height:1.5;margin-bottom:20px}
-dialog input[type=email]{width:100%;padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:400 15px Manrope,sans-serif;margin-bottom:14px}
-dialog input:focus-visible{outline:2px solid var(--arc);outline-offset:2px}
-.row{display:flex;gap:10px;align-items:center}
-.row .btn{flex:1}
-.close{background:none;border:0;color:var(--mute);font:400 14px Manrope,sans-serif;cursor:pointer;padding:10px}
-#msg{margin-top:14px;font-size:14px;min-height:20px;color:var(--arc)}
-.hp{position:absolute;left:-9999px}
-@media(max-width:480px){.hero{padding-top:22px}.copy{padding-top:8vh}.foot{align-items:flex-start;flex-direction:column}.about{padding-top:10vh}}
-@media(prefers-reduced-motion:reduce){h1,.lede,.status b{animation:none}*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+:root{color-scheme:dark;--bg:#08090c;--panel:#101217;--panel2:#151922;--line:rgba(235,239,247,.11);--ink:#f1f2f4;--muted:#9298a5;--soft:#c6cad2;--accent:#b8a1ff;--accent2:#8b75dc;--max:1220px;--radius:18px}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:92px}body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",sans-serif;line-height:1.6;overflow-x:hidden}a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}button,a{-webkit-tap-highlight-color:transparent}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:3px}::selection{background:var(--accent);color:#09090c}.container{width:min(var(--max),calc(100% - 48px));margin-inline:auto}.eyebrow{display:inline-flex;align-items:center;gap:9px;color:#c4b7f6;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}.eyebrow:before{content:"";width:18px;height:1px;background:var(--accent)}.section{padding:112px 0;border-top:1px solid rgba(255,255,255,.045)}.section-head{max-width:720px;margin-bottom:48px}.section-head h2{font:500 clamp(30px,5vw,54px)/1.12 "Manrope",sans-serif;letter-spacing:-.055em;margin:16px 0}.section-head p{color:var(--muted);font-size:16px;max-width:600px;margin:0}.muted{color:var(--muted)}.display{font-family:"Manrope",sans-serif;letter-spacing:-.065em}.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 20px;border-radius:999px;border:1px solid transparent;background:var(--accent);color:#111016;font-weight:700;font-size:13px;transition:transform .2s,background .2s,border-color .2s}.btn:hover{transform:translateY(-2px);background:#c8b8ff}.btn.secondary{background:transparent;color:var(--ink);border-color:var(--line)}.btn.secondary:hover{border-color:rgba(184,161,255,.6);background:rgba(184,161,255,.07)}.btn.small{min-height:40px;padding:0 16px;font-size:12px}.arrow{font-size:17px;line-height:1}.nav-wrap{position:sticky;top:0;z-index:50;background:rgba(8,9,12,.78);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.07)}.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:11px;font:600 15px "Unbounded",sans-serif;letter-spacing:-.04em}.brand-mark{width:31px;height:31px;display:block}.nav-links{display:flex;align-items:center;gap:26px;color:#b4b8c1;font-size:12px;font-weight:600}.nav-links a{transition:color .2s}.nav-links a:hover{color:white}.nav-actions{display:flex;align-items:center;gap:10px}.menu-toggle{display:none;width:42px;height:42px;border:1px solid var(--line);border-radius:50%;background:transparent;color:white;font-size:20px}.hero{position:relative;min-height:690px;padding:104px 0 86px;display:flex;align-items:center;overflow:hidden}.hero:before{content:"";position:absolute;width:720px;height:720px;right:-140px;top:-90px;background:radial-gradient(circle,rgba(130,106,211,.17),rgba(8,9,12,0) 68%);pointer-events:none}.hero-grid{position:relative;display:grid;grid-template-columns:1.08fr .92fr;align-items:center;gap:40px}.hero-copy{max-width:700px}.hero h1{font:500 clamp(48px,7.3vw,92px)/1.04 "Manrope",sans-serif;letter-spacing:-.075em;margin:22px 0 24px}.hero h1 span{color:var(--accent)}.hero-copy>p{max-width:570px;color:#a4a9b4;font-size:17px;line-height:1.8;margin:0}.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}.hero-note{display:flex;align-items:center;gap:10px;margin-top:32px;color:#858b98;font-size:11px}.hero-note i{width:6px;height:6px;border-radius:50%;background:#9c89e7;box-shadow:0 0 12px #9c89e7}.ecosystem-visual{position:relative;min-height:480px;display:grid;place-items:center}.orbit{position:absolute;border:1px solid rgba(184,161,255,.15);border-radius:50%;transform:rotate(-22deg)}.orbit.one{width:400px;height:400px}.orbit.two{width:310px;height:310px;transform:rotate(45deg)}.orbit.three{width:220px;height:220px;border-style:dashed;opacity:.7}.core{width:152px;height:152px;border-radius:34px;background:linear-gradient(145deg,#262336,#101117 68%);border:1px solid rgba(207,193,255,.3);box-shadow:0 24px 100px rgba(130,106,211,.2),inset 0 1px rgba(255,255,255,.15);display:grid;place-items:center;z-index:2;transform:rotate(-8deg)}.core-inner{transform:rotate(8deg);text-align:center}.core-symbol{font:500 25px "Unbounded";color:#e8e1ff;letter-spacing:-.1em}.core-label{display:block;color:#a8a1bc;font-size:9px;letter-spacing:.18em;text-transform:uppercase;margin-top:7px}.node{position:absolute;z-index:3;width:132px;padding:14px 13px;border:1px solid rgba(255,255,255,.12);border-radius:14px;background:rgba(17,19,26,.88);box-shadow:0 14px 40px rgba(0,0,0,.24);backdrop-filter:blur(12px)}.node strong{display:block;font-size:12px}.node small{display:block;color:#858b98;font-size:10px;margin-top:3px}.node .node-icon{color:var(--accent);font-size:17px;margin-bottom:5px}.node.build{top:26px;left:10%}.node.grow{top:32px;right:2%}.node.automate{bottom:28px;left:6%}.node.connect{bottom:30px;right:0}.hero-bottom{position:absolute;bottom:26px;left:0;right:0;color:#707783;font-size:10px;letter-spacing:.12em;text-transform:uppercase;display:flex;justify-content:space-between}.trust-strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 0}.trust-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}.trust-inner span{color:#747b87;font-size:10px;letter-spacing:.14em;text-transform:uppercase}.trust-items{display:flex;gap:28px;flex-wrap:wrap;color:#b3b8c2;font-size:12px}.problem-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.problem-card,.pillar-card,.service-card,.industry-card,.step-card,.work-card,.feature-card{background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.015));border:1px solid var(--line);border-radius:var(--radius)}.problem-card{padding:24px;min-height:200px}.iconbox{width:42px;height:42px;border:1px solid rgba(184,161,255,.25);background:rgba(184,161,255,.08);border-radius:12px;display:grid;place-items:center;color:var(--accent);font-size:18px;margin-bottom:26px}.problem-card h3,.service-card h3,.industry-card h3{font-size:15px;margin:0 0 8px}.problem-card p,.service-card p,.industry-card p{font-size:12px;line-height:1.7;color:var(--muted);margin:0}.pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.pillar-card{padding:25px;min-height:260px;display:flex;flex-direction:column;transition:transform .25s,border-color .25s}.pillar-card:hover,.service-card:hover,.industry-card:hover{transform:translateY(-4px);border-color:rgba(184,161,255,.4)}.pillar-number{font:500 11px "Unbounded";color:#777e8a}.pillar-card .iconbox{margin-top:25px}.pillar-card h3{font:500 21px "Manrope";letter-spacing:-.04em;margin:0 0 10px}.pillar-card p{font-size:12px;color:var(--muted);margin:0 0 20px}.text-link{margin-top:auto;color:#d3c8ff;font-size:12px;font-weight:700;display:inline-flex;gap:8px;align-items:center}.builder-panel{display:grid;grid-template-columns:.88fr 1.12fr;gap:45px;align-items:center;padding:42px;border:1px solid rgba(184,161,255,.22);border-radius:26px;background:radial-gradient(ellipse at 100% 0,rgba(142,118,220,.13),transparent 50%),#0e1015}.builder-copy h2{font:500 clamp(30px,4.5vw,48px)/1.12 "Manrope";letter-spacing:-.06em;margin:16px 0}.builder-copy p{color:var(--muted);font-size:14px;line-height:1.8}.check-list{list-style:none;padding:0;margin:24px 0;display:grid;gap:11px}.check-list li{font-size:12px;color:#c3c7d0;display:flex;gap:10px;align-items:center}.check-list li:before{content:"✓";color:var(--accent);font-weight:800}.builder-ui{border:1px solid rgba(255,255,255,.12);border-radius:17px;background:#090b10;overflow:hidden;box-shadow:0 28px 80px rgba(0,0,0,.4)}.mock-top{height:42px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 14px;color:#858b98;font-size:9px}.mock-dots{display:flex;gap:5px}.mock-dots i{width:6px;height:6px;background:#4b4e58;border-radius:50%}.mock-body{display:grid;grid-template-columns:115px 1fr;min-height:300px}.mock-side{padding:16px 10px;border-right:1px solid var(--line)}.mock-side b{display:block;color:#bfc3ce;font-size:9px;margin:0 0 14px}.mock-side span{display:block;color:#7d8491;font-size:8px;padding:7px 8px;border-radius:6px;margin:3px 0}.mock-side span.active{background:rgba(184,161,255,.13);color:#d7ccff}.mock-canvas{padding:16px;background:#151820}.mock-page{height:100%;min-height:260px;background:#f0eee9;color:#1c1b1d;padding:24px 20px;display:flex;flex-direction:column;justify-content:space-between}.mock-page .mock-brand{font-size:9px;font-weight:800;letter-spacing:.08em}.mock-page h4{font:600 25px/1.1 "Manrope";letter-spacing:-.06em;max-width:220px;margin:0}.mock-page p{font-size:8px;color:#666;max-width:200px}.mock-page button{align-self:flex-start;background:#1e1b22;color:#fff;border:0;border-radius:99px;padding:8px 13px;font-size:8px}.mock-footer{font-size:8px;color:#777}.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.service-card{padding:28px;display:grid;grid-template-columns:52px 1fr;gap:17px;transition:transform .25s,border-color .25s}.service-card .iconbox{margin:0}.service-card h3{font-size:17px}.service-card p{font-size:13px}.service-meta{font-size:10px;color:#a99adf;margin-top:13px}.industry-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.industry-card{padding:24px;min-height:180px;transition:transform .25s,border-color .25s}.industry-card .industry-tag{color:#a99adf;font-size:9px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:24px;display:block}.industry-card h3{font:500 18px "Manrope";letter-spacing:-.03em}.split-choice{display:grid;grid-template-columns:1fr 1fr;gap:14px}.choice{padding:34px;border:1px solid var(--line);border-radius:20px;background:var(--panel)}.choice .iconbox{margin-bottom:24px}.choice h3{font:500 24px "Manrope";letter-spacing:-.04em;margin:0 0 8px}.choice p{color:var(--muted);font-size:13px}.choice ul{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:10px}.choice li{font-size:12px;color:#c5c9d1}.choice li:before{content:"—";color:var(--accent);margin-right:9px}.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.step-card{padding:21px;min-height:170px}.step-card .num{font:500 11px "Unbounded";color:var(--accent)}.step-card h3{font-size:14px;margin:25px 0 8px}.step-card p{font-size:11px;color:var(--muted);margin:0}.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.work-card{overflow:hidden}.work-visual{height:185px;padding:17px;display:grid;place-items:center;background:radial-gradient(circle at 65% 25%,rgba(184,161,255,.22),transparent 55%),#171923}.work-visual.alt{background:radial-gradient(circle at 35% 35%,rgba(109,140,180,.2),transparent 55%),#151a20}.work-visual.warm{background:radial-gradient(circle at 70% 25%,rgba(197,151,119,.2),transparent 55%),#1b1717}.work-mini{width:82%;height:82%;border:1px solid rgba(255,255,255,.2);background:rgba(8,9,12,.58);padding:15px;display:flex;flex-direction:column;justify-content:space-between}.work-mini b{font:500 11px "Unbounded";letter-spacing:-.05em}.work-mini strong{font:500 20px "Manrope";line-height:1.1;max-width:180px}.work-mini span{font-size:8px;color:#a4a9b4}.work-info{padding:19px}.work-info h3{font-size:14px;margin:0 0 5px}.work-info p{font-size:11px;color:var(--muted);margin:0}.work-disclaimer{font-size:10px;color:#777e89;margin-top:16px}.market-panel{display:grid;grid-template-columns:1fr auto;align-items:center;gap:25px;padding:36px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(120deg,rgba(184,161,255,.09),transparent 65%),var(--panel)}.market-panel h3{font:500 27px "Manrope";letter-spacing:-.05em;margin:12px 0}.market-panel p{max-width:650px;color:var(--muted);font-size:13px;margin:0}.faq-list{max-width:850px;border-top:1px solid var(--line)}.faq-item{border-bottom:1px solid var(--line)}.faq-q{width:100%;background:none;border:0;color:var(--ink);padding:22px 0;display:flex;justify-content:space-between;align-items:center;text-align:left;font-weight:600;font-size:14px;cursor:pointer}.faq-q span:last-child{color:var(--accent);font-size:20px}.faq-a{display:none;color:var(--muted);font-size:13px;line-height:1.8;padding:0 40px 22px 0;max-width:720px}.faq-item.open .faq-a{display:block}.cta-section{padding:100px 0}.cta-box{position:relative;overflow:hidden;padding:65px;border:1px solid rgba(184,161,255,.25);border-radius:26px;background:radial-gradient(ellipse at 90% 0,rgba(184,161,255,.17),transparent 50%),#101117}.cta-box h2{font:500 clamp(34px,5vw,58px)/1.1 "Manrope";letter-spacing:-.065em;max-width:700px;margin:17px 0}.cta-box p{color:var(--muted);font-size:14px;max-width:550px;margin-bottom:28px}.footer{border-top:1px solid var(--line);padding:55px 0 28px}.footer-grid{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:35px}.footer-brand p{max-width:280px;color:var(--muted);font-size:12px;margin-top:17px}.footer-col h4{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#818894;margin:4px 0 17px}.footer-col a{display:block;color:#c1c5ce;font-size:12px;margin:10px 0}.footer-col a:hover{color:var(--accent)}.footer-bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:40px;padding-top:20px;color:#707783;font-size:10px}.modal{position:fixed;inset:0;z-index:100;display:none;place-items:center;padding:20px;background:rgba(0,0,0,.75);backdrop-filter:blur(9px)}.modal.show{display:grid}.modal-card{width:min(100%,520px);max-height:90vh;overflow:auto;border:1px solid var(--line);border-radius:22px;background:#11141b;padding:30px;position:relative}.modal-close{position:absolute;right:17px;top:15px;border:0;background:transparent;color:#aab0ba;font-size:23px;cursor:pointer}.modal-card h2{font:500 27px "Manrope";letter-spacing:-.05em;margin:8px 0}.modal-card>p{color:var(--muted);font-size:12px;margin-bottom:22px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{display:grid;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:10px;color:#b7bdc8;font-weight:600}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:10px;background:#090b10;color:var(--ink);padding:12px;font-size:12px}.field textarea{min-height:100px;resize:vertical}.field select{color-scheme:dark}.form-submit{margin-top:16px;width:100%;border:0;cursor:pointer}.form-msg{font-size:11px;color:var(--accent);min-height:18px;margin-top:10px}.hp{position:absolute;left:-9999px}.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}
+@media(max-width:980px){.nav-links{gap:15px}.nav-links a{font-size:11px}.hero-grid{grid-template-columns:1fr 1fr;gap:10px}.ecosystem-visual{transform:scale(.88)}.problem-grid,.pillars{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(3,1fr)}.footer-grid{grid-template-columns:1.5fr 1fr 1fr}.footer-col:last-child{grid-column:2}}
+@media(max-width:720px){.container{width:min(100% - 36px,var(--max))}.section{padding:78px 0}.nav{height:66px}.nav-actions>.btn{display:none}.menu-toggle{display:block}.nav-links{display:none;position:absolute;top:66px;left:0;right:0;background:#0c0e13;border-bottom:1px solid var(--line);padding:20px 24px 25px;flex-direction:column;align-items:stretch;gap:0}.nav-links.open{display:flex}.nav-links a{padding:13px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:13px}.hero{padding:78px 0 72px;min-height:auto}.hero-grid{grid-template-columns:1fr}.hero h1{font-size:clamp(48px,13vw,76px)}.hero-copy>p{font-size:15px}.ecosystem-visual{min-height:390px;transform:scale(.9);margin:-10px -20px 0}.orbit.one{width:330px;height:330px}.orbit.two{width:260px;height:260px}.orbit.three{width:185px;height:185px}.node{width:116px;padding:11px}.node.build{left:2%;top:24px}.node.grow{right:0;top:24px}.node.automate{left:1%;bottom:22px}.node.connect{right:0;bottom:22px}.hero-bottom{position:static;margin-top:15px}.trust-inner{align-items:flex-start;flex-direction:column}.trust-items{gap:14px 22px}.problem-grid,.pillars{grid-template-columns:1fr 1fr}.problem-card{padding:18px;min-height:190px}.pillar-card{padding:18px;min-height:245px}.builder-panel{grid-template-columns:1fr;padding:25px;gap:30px}.services-grid{grid-template-columns:1fr}.industry-grid{grid-template-columns:1fr 1fr}.split-choice{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}.work-grid{grid-template-columns:1fr 1fr}.market-panel{grid-template-columns:1fr}.cta-box{padding:38px 25px}.footer-grid{grid-template-columns:1fr 1fr}.footer-brand{grid-column:1/-1}.footer-col:last-child{grid-column:auto}}
+@media(max-width:420px){.container{width:calc(100% - 30px)}.problem-grid,.pillars,.industry-grid,.steps,.work-grid{grid-template-columns:1fr}.problem-card{min-height:0}.problem-card .iconbox{margin-bottom:16px}.pillar-card{min-height:0}.pillar-card .iconbox{margin-top:15px}.hero-actions{flex-direction:column;align-items:stretch}.hero-actions .btn{width:100%}.ecosystem-visual{transform:scale(.78);margin:-30px -45px}.hero-bottom{font-size:8px}.service-card{grid-template-columns:42px 1fr;padding:20px}.service-card .iconbox{width:38px;height:38px}.mock-body{grid-template-columns:90px 1fr}.mock-canvas{padding:9px}.mock-page{padding:18px 14px}.mock-page h4{font-size:20px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.footer-grid{gap:25px 18px}.footer-brand{grid-column:1/-1}.footer-bottom{flex-direction:column}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
 </style>
 </head>
 <body>
-<canvas id="gl" aria-hidden="true"></canvas>
-<main>
-  <section class="hero">
-    <nav>
-      <span class="logo"><svg viewBox="0 0 48 48" fill="none" stroke-linecap="round" aria-hidden="true"><circle cx="24" cy="24" r="20" stroke="#6fe3ff" stroke-width="3" stroke-dasharray="40 86" transform="rotate(60 24 24)"/><circle cx="24" cy="24" r="13.5" stroke="#6fe3ff" stroke-width="3" stroke-dasharray="58 27" transform="rotate(-120 24 24)" opacity=".75"/><circle cx="24" cy="24" r="5" fill="#ff6b3d"/></svg>arcnoids</span>
-      <span class="status"><b></b>Coming soon</span>
+<header class="nav-wrap">
+  <div class="container nav">
+    <a class="brand" href="#home" aria-label="Arcnoids home">
+      <svg class="brand-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="20" stroke="#b8a1ff" stroke-width="2.7" stroke-dasharray="40 86" transform="rotate(60 24 24)"/><circle cx="24" cy="24" r="13.5" stroke="#b8a1ff" stroke-width="2.7" stroke-dasharray="58 27" transform="rotate(-120 24 24)" opacity=".72"/><circle cx="24" cy="24" r="4.5" fill="#e8e1ff"/></svg>
+      arcnoids
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+      <a href="#platform">Platform</a><a href="#solutions">Solutions</a><a href="#industries">Industries</a><a href="#marketplace">Marketplace</a><a href="#process">How it works</a><a href="#about">About</a>
     </nav>
-    <div class="copy">
-      <h1>arc<br>noids</h1>
-      <p class="lede">Something new is taking shape. <em>Arcnoids</em> brings intelligent, motion-driven form into the world, built piece by piece and arriving soon.</p>
+    <div class="nav-actions"><a class="btn small" href="#contact">Start a project <span class="arrow">↗</span></a><button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰</button></div>
+  </div>
+</header>
+<main id="home">
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">A connected digital ecosystem</span>
+      <h1>Everything you need to build your <span>digital world.</span></h1>
+      <p>From launching your first website to growing an established business, Arcnoids brings the tools, services and expertise together in one ecosystem.</p>
+      <div class="hero-actions"><a class="btn" href="#platform">Explore the ecosystem <span class="arrow">↗</span></a><a class="btn secondary" href="#contact">Talk to our team</a></div>
+      <div class="hero-note"><i></i> Build it yourself, work with our team, or combine both.</div>
     </div>
-    <div class="foot">
-      <button class="btn" id="openForm" type="button">Get launch updates</button>
-      <span>Move your cursor to turn the core.</span>
+    <div class="ecosystem-visual" aria-label="Arcnoids ecosystem: Build, Grow, Automate and Connect">
+      <div class="orbit one"></div><div class="orbit two"></div><div class="orbit three"></div>
+      <div class="core"><div class="core-inner"><div class="core-symbol">a.</div><span class="core-label">Arcnoids</span></div></div>
+      <div class="node build"><div class="node-icon">⌘</div><strong>Build</strong><small>Websites · Digital products</small></div>
+      <div class="node grow"><div class="node-icon">↗</div><strong>Grow</strong><small>Brand · Marketing</small></div>
+      <div class="node automate"><div class="node-icon">⌁</div><strong>Automate</strong><small>AI · Workflows</small></div>
+      <div class="node connect"><div class="node-icon">◎</div><strong>Connect</strong><small>Experts · Services</small></div>
     </div>
-  </section>
-  <section class="about">
-    <div><h2>Built in motion</h2><p>Every part of Arcnoids is designed to move, adapt and respond.</p></div>
-    <div><h2>Precise by design</h2><p>Clean geometry and careful engineering sit at the centre of the project.</p></div>
-    <div><h2>Launching soon</h2><p>The full site, details and first release are on their way.</p></div>
-  </section>
+  </div>
+  <div class="container hero-bottom"><span>Digital possibilities, connected</span><span>India · Worldwide</span></div>
+</section>
+<div class="trust-strip"><div class="container trust-inner"><span>One place for what comes next</span><div class="trust-items"><span>Web & software</span><span>Creative</span><span>Marketing</span><span>AI & automation</span><span>E-commerce</span></div></div></div>
+
+<section class="section" id="about"><div class="container">
+  <div class="section-head reveal"><span class="eyebrow">Why Arcnoids</span><h2>Your business shouldn't have to piece everything together.</h2><p>Building a business online can mean juggling separate designers, developers, marketing providers and software tools. We are bringing those capabilities into one connected experience.</p></div>
+  <div class="problem-grid">
+    <article class="problem-card reveal"><div class="iconbox">⌂</div><h3>Starting from zero</h3><p>You need a professional online presence but don't know where to begin.</p></article>
+    <article class="problem-card reveal"><div class="iconbox">↗</div><h3>Struggling to grow</h3><p>Your business needs a clearer way to reach customers and build visibility.</p></article>
+    <article class="problem-card reveal"><div class="iconbox">⟳</div><h3>Too much manual work</h3><p>Repetitive tasks take time away from the work that matters.</p></article>
+    <article class="problem-card reveal"><div class="iconbox">⌘</div><h3>Disconnected providers</h3><p>Different people and tools make projects harder to coordinate.</p></article>
+  </div>
+</div></section>
+
+<section class="section" id="platform"><div class="container">
+  <div class="section-head reveal"><span class="eyebrow">The Arcnoids ecosystem</span><h2>One ecosystem. Four ways to move forward.</h2><p>Start with the capability you need today. Bring more of your digital business into Arcnoids as you grow.</p></div>
+  <div class="pillars">
+    <article class="pillar-card reveal"><span class="pillar-number">01 / BUILD</span><div class="iconbox">⌘</div><h3>Build</h3><p>Create websites, online stores, brands and digital experiences.</p><a class="text-link" href="#website-builder">Explore Build <span>↗</span></a></article>
+    <article class="pillar-card reveal"><span class="pillar-number">02 / GROW</span><div class="iconbox">↗</div><h3>Grow</h3><p>Reach customers, strengthen your brand and grow your business.</p><a class="text-link" href="#solutions">Explore Grow <span>↗</span></a></article>
+    <article class="pillar-card reveal"><span class="pillar-number">03 / AUTOMATE</span><div class="iconbox">⌁</div><h3>Automate</h3><p>Simplify operations with AI assistants and intelligent workflows.</p><a class="text-link" href="#solutions">Explore Automate <span>↗</span></a></article>
+    <article class="pillar-card reveal"><span class="pillar-number">04 / CONNECT</span><div class="iconbox">◎</div><h3>Connect</h3><p>Find creative professionals and digital expertise for your next project.</p><a class="text-link" href="#marketplace">Explore Connect <span>↗</span></a></article>
+  </div>
+</div></section>
+
+<section class="section" id="website-builder"><div class="container">
+  <div class="builder-panel reveal">
+    <div class="builder-copy"><span class="eyebrow">An Arcnoids product</span><h2>Your business deserves a website. Not a technical headache.</h2><p>Create a professional website without starting from a blank screen. Choose a direction, tell us about your business and shape the result with an intuitive editor.</p>
+      <ul class="check-list"><li>AI-assisted first drafts and page content</li><li>Business-ready starting templates</li><li>Visual editing for text, images and sections</li><li>Responsive preview for desktop and mobile</li><li>Publishing and custom-domain support planned</li></ul>
+      <a class="btn" href="#contact" data-interest="Website builder early access">Join the early-access list <span class="arrow">↗</span></a>
+      <p style="font-size:10px;margin-top:12px">The builder is in development. Join the list to hear about availability.</p>
+    </div>
+    <div class="builder-ui" aria-label="Illustrative website builder interface">
+      <div class="mock-top"><div class="mock-dots"><i></i><i></i><i></i></div><span>arcnoids / website editor</span><span>Preview&nbsp;&nbsp; Publish</span></div>
+      <div class="mock-body"><aside class="mock-side"><b>YOUR WEBSITE</b><span class="active">◫ &nbsp; Pages</span><span>▤ &nbsp; Sections</span><span>◇ &nbsp; Elements</span><span>▧ &nbsp; Media</span><span style="margin-top:25px">DESIGN</span><span>◌ &nbsp; Theme</span><span>⌁ &nbsp; Settings</span></aside>
+        <div class="mock-canvas"><div class="mock-page"><div class="mock-brand">THE DAILY TABLE</div><div><h4>Good food.<br>Good moments.</h4><p>A neighbourhood kitchen serving fresh, seasonal plates every day.</p><button type="button">Explore our menu ↗</button></div><div class="mock-footer">FRESHLY MADE · LOCALLY SOURCED</div></div></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="section" id="solutions"><div class="container">
+  <div class="section-head reveal"><span class="eyebrow">Professional services</span><h2>Expert execution, whenever you need it.</h2><p>Prefer to have someone handle the work? Our team brings creative, technical and growth capabilities together around your goals.</p></div>
+  <div class="services-grid">
+    <article class="service-card reveal"><div class="iconbox">✳</div><div><h3>Creative & branding</h3><p>Brand identity, logo systems, graphic design, video editing, short-form content, presentations and visual production.</p><div class="service-meta">Brand identity · Design · Video · Content</div></div></article>
+    <article class="service-card reveal"><div class="iconbox">↗</div><div><h3>Marketing & growth</h3><p>Social media strategy and management, SEO, paid campaigns, email marketing, lead generation and performance reporting.</p><div class="service-meta">Social · SEO · Campaigns · Leads</div></div></article>
+    <article class="service-card reveal"><div class="iconbox">⌘</div><div><h3>Web & software development</h3><p>Business websites, landing pages, web applications, custom dashboards, integrations and digital product development.</p><div class="service-meta">Websites · Applications · Integrations</div></div></article>
+    <article class="service-card reveal"><div class="iconbox">⌁</div><div><h3>AI & automation</h3><p>AI assistants, customer-support workflows, automated follow-ups, internal tools and process automation.</p><div class="service-meta">AI agents · Workflows · Business tools</div></div></article>
+    <article class="service-card reveal"><div class="iconbox">▣</div><div><h3>E-commerce solutions</h3><p>Online store setup, product catalogues, payment and shipping integrations, inventory flows and store operations.</p><div class="service-meta">Online stores · Payments · Operations</div></div></article>
+    <article class="service-card reveal"><div class="iconbox">✣</div><div><h3>Digital strategy & consulting</h3><p>Turn an idea or business challenge into a practical digital roadmap, scope and delivery plan.</p><div class="service-meta">Discovery · Roadmaps · Technical planning</div></div></article>
+  </div>
+  <div style="margin-top:28px"><a class="btn secondary" href="#contact">Discuss a project with us <span class="arrow">↗</span></a></div>
+</div></section>
+
+<section class="section" id="industries"><div class="container">
+  <div class="section-head reveal"><span class="eyebrow">Who we help</span><h2>Solutions shaped around your business.</h2><p>Different industries have different needs. Start with your business type and discover a practical combination of digital services.</p></div>
+  <div class="industry-grid">
+    <article class="industry-card reveal"><span class="industry-tag">01 / Commerce</span><h3>Retail & fashion</h3><p>Online stores, product storytelling, brand identity and customer acquisition.</p></article>
+    <article class="industry-card reveal"><span class="industry-tag">02 / Hospitality</span><h3>Restaurants & cafes</h3><p>Websites, digital menus, booking enquiries, local search and social content.</p></article>
+    <article class="industry-card reveal"><span class="industry-tag">03 / Innovation</span><h3>Startups & technology</h3><p>Brand launch, landing pages, MVPs, product development and automation.</p></article>
+    <article class="industry-card reveal"><span class="industry-tag">04 / Services</span><h3>Local businesses</h3><p>Professional websites, enquiry capture, reputation and local marketing.</p></article>
+    <article class="industry-card reveal"><span class="industry-tag">05 / Expertise</span><h3>Consultants & professionals</h3><p>Personal websites, portfolios, lead funnels and appointment workflows.</p></article>
+    <article class="industry-card reveal"><span class="industry-tag">06 / Creators</span><h3>Creators & personal brands</h3><p>Portfolio sites, content production, brand systems and audience growth.</p></article>
+  </div>
+</div></section>
+
+<section class="section" id="ways-to-work"><div class="container">
+  <div class="section-head reveal"><span class="eyebrow">Choose your path</span><h2>Do it yourself. Or let us do it with you.</h2><p>Arcnoids is designed to meet businesses at different stages, budgets and levels of technical experience.</p></div>
+  <div class="split-choice">
+    <article class="choice reveal"><div class="iconbox">⌖</div><h3>Build it yourself</h3><p>For business owners who want the tools and flexibility to create and manage their own digital presence.</p><ul><li>Website templates and guided setup</li><li>AI-assisted content and page creation</li><li>Visual editing and self-management</li><li>Tools that can expand with your business</li></ul><a class="text-link" href="#website-builder">Explore the website builder ↗</a></article>
+    <article class="choice reveal"><div class="iconbox">↗</div><h3>Let our team handle it</h3><p>For businesses that want experienced people to plan, create and deliver the work.</p><ul><li>One point of contact for your project</li><li>Clear scope and proposal before work begins</li><li>Creative, marketing and technical delivery</li><li>Ongoing support options</li></ul><a class="text-link" href="#contact">Request a project proposal ↗</a></article>
+  </div>
+</div></section>
+
+<section class="section" id="process"><div class="container">
+  <div class="section-head reveal"><span class="eyebrow">A simple process</span><h2>From what you need to what's next.</h2><p>You don't need a technical brief to get started. Tell us the outcome you're looking for and we'll help define the next step.</p></div>
+  <div class="steps">
+    <article class="step-card reveal"><span class="num">01</span><h3>Tell us your goal</h3><p>Share your business, idea or challenge.</p></article>
+    <article class="step-card reveal"><span class="num">02</span><h3>Find the right route</h3><p>Choose a tool, service or combination.</p></article>
+    <article class="step-card reveal"><span class="num">03</span><h3>Plan the work</h3><p>Agree on scope, timeline and proposal.</p></article>
+    <article class="step-card reveal"><span class="num">04</span><h3>Build and launch</h3><p>Work together, review and deliver.</p></article>
+    <article class="step-card reveal"><span class="num">05</span><h3>Keep growing</h3><p>Improve, maintain and add capabilities.</p></article>
+  </div>
+</div></section>
+
+<section class="section" id="work"><div class="container">
+  <div class="section-head reveal"><span class="eyebrow">What we can create</span><h2>Digital experiences, made for real business needs.</h2><p>A glimpse of the types of work Arcnoids is built to deliver. These are illustrative concept directions, not claimed client projects.</p></div>
+  <div class="work-grid">
+    <article class="work-card reveal"><div class="work-visual"><div class="work-mini"><b>STUDIO / 01</b><strong>A distinct identity for a new idea.</strong><span>BRAND SYSTEM · ART DIRECTION</span></div></div><div class="work-info"><h3>Brand & creative direction</h3><p>Identity systems and visual content.</p></div></article>
+    <article class="work-card reveal"><div class="work-visual alt"><div class="work-mini"><b>DIGITAL / 02</b><strong>A better way to meet your customers.</strong><span>WEB EXPERIENCE · DEVELOPMENT</span></div></div><div class="work-info"><h3>Websites & digital products</h3><p>Business websites and useful software.</p></div></article>
+    <article class="work-card reveal"><div class="work-visual warm"><div class="work-mini"><b>GROWTH / 03</b><strong>Turn attention into momentum.</strong><span>CONTENT · CAMPAIGNS · INSIGHTS</span></div></div><div class="work-info"><h3>Marketing & growth systems</h3><p>Campaigns, content and automation.</p></div></article>
+  </div>
+  <p class="work-disclaimer">Concept previews are illustrative. Client case studies and measurable results will be published only when verified and approved.</p>
+</div></section>
+
+<section class="section" id="marketplace"><div class="container">
+  <div class="market-panel reveal"><div><span class="eyebrow">Arcnoids marketplace</span><h3>Good work starts with the right people.</h3><p>We're shaping a place where businesses can discover specialist services, review portfolios and connect with the expertise their projects need. The marketplace is planned as a later platform release.</p></div><a class="btn secondary" href="#contact" data-interest="Marketplace launch updates">Register interest <span class="arrow">↗</span></a></div>
+</div></section>
+
+<section class="section" id="faq"><div class="container">
+  <div class="section-head reveal"><span class="eyebrow">Questions, answered</span><h2>A few things worth knowing.</h2></div>
+  <div class="faq-list reveal">
+    <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>What exactly is Arcnoids?</span><span>+</span></button><div class="faq-a">Arcnoids is a digital business ecosystem bringing together website creation, creative services, marketing, e-commerce, software development and AI automation. You can use self-service tools as they become available or work with our team on a project.</div></div>
+    <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>Can a small business use Arcnoids?</span><span>+</span></button><div class="faq-a">Yes. The goal is to make digital capabilities more accessible to small businesses as well as startups and established companies. You can start with one need, such as a website or brand identity, and expand later.</div></div>
+    <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>Do I need technical knowledge?</span><span>+</span></button><div class="faq-a">No. For managed projects, tell us what you want to achieve and we'll help shape the scope. The planned website builder is intended to help non-technical users create and manage a website.</div></div>
+    <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>Is the website builder available now?</span><span>+</span></button><div class="faq-a">The website builder is in development and is not yet available for public publishing. You can register interest and we'll share updates as early access becomes available.</div></div>
+    <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>Can I hire Arcnoids for a custom project?</span><span>+</span></button><div class="faq-a">Yes. Use the project enquiry form to tell us about your goals, timeline and requirements. We'll review the details and follow up about fit, scope and next steps.</div></div>
+    <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>Do you work with international clients?</span><span>+</span></button><div class="faq-a">Arcnoids is being built to serve businesses in India and internationally. Project availability, timelines and payment arrangements are discussed during the enquiry process.</div></div>
+  </div>
+</div></section>
+
+<section class="cta-section" id="contact"><div class="container"><div class="cta-box reveal"><span class="eyebrow">Let's make it happen</span><h2>Whatever you're building, start here.</h2><p>Tell us what your business needs. Whether it's a website, a creative project, a growth plan or a custom digital product, we'll help you find a practical next step.</p><button class="btn" type="button" id="openProject">Tell us about your project <span class="arrow">↗</span></button></div></div></section>
 </main>
-<dialog id="dlg">
-  <h2>Get launch updates</h2>
-  <p>Be the first to know when Arcnoids launches. Enter your email and we’ll let you know.</p>
-  <form id="f" novalidate>
-    <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off">
-    <input type="email" id="em" name="email" placeholder="you@example.com" autocomplete="email" required aria-label="Email address">
-    <div class="row"><button class="btn" type="submit" id="go">Notify me</button><button class="close" type="button" id="cl">Close</button></div>
-    <div id="msg" role="status" aria-live="polite"></div>
-  </form>
-</dialog>
+<footer class="footer"><div class="container">
+  <div class="footer-grid">
+    <div class="footer-brand"><a class="brand" href="#home"><svg class="brand-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="20" stroke="#b8a1ff" stroke-width="2.7" stroke-dasharray="40 86" transform="rotate(60 24 24)"/><circle cx="24" cy="24" r="13.5" stroke="#b8a1ff" stroke-width="2.7" stroke-dasharray="58 27" transform="rotate(-120 24 24)" opacity=".72"/><circle cx="24" cy="24" r="4.5" fill="#e8e1ff"/></svg>arcnoids</a><p>One ecosystem to build, manage, automate and grow your business.</p></div>
+    <div class="footer-col"><h4>Explore</h4><a href="#platform">Platform</a><a href="#website-builder">Website builder</a><a href="#marketplace">Marketplace</a><a href="#industries">Industries</a></div>
+    <div class="footer-col"><h4>Solutions</h4><a href="#solutions">Creative & branding</a><a href="#solutions">Marketing & growth</a><a href="#solutions">Web & software</a><a href="#solutions">AI & automation</a><a href="#solutions">E-commerce</a></div>
+    <div class="footer-col"><h4>Company</h4><a href="#about">About Arcnoids</a><a href="#work">What we create</a><a href="#faq">FAQs</a><a href="#contact">Contact</a></div>
+  </div>
+  <div class="footer-bottom"><span>© <span id="year"></span> Arcnoids. All rights reserved.</span><span>Built for what comes next.</span></div>
+</div></footer>
+
+<div class="modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-card"><button class="modal-close" id="closeProject" aria-label="Close dialog">×</button><span class="eyebrow">Start a conversation</span><h2 id="modalTitle">Tell us what you're building.</h2><p>Share a few details. The Arcnoids team can follow up to understand your goals and discuss next steps.</p>
+    <form id="projectForm">
+      <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+      <div class="form-grid">
+        <div class="field"><label for="name">Your name *</label><input id="name" name="name" required autocomplete="name" placeholder="Name"></div>
+        <div class="field"><label for="email">Work email *</label><input id="email" name="email" type="email" required autocomplete="email" placeholder="you@company.com"></div>
+        <div class="field"><label for="business">Business / project name</label><input id="business" name="business" placeholder="Your business"></div>
+        <div class="field"><label for="need">What do you need? *</label><select id="need" name="need" required><option value="">Choose a service</option><option>Website or website builder</option><option>Branding and creative</option><option>Marketing and growth</option><option>Web or software development</option><option>AI and automation</option><option>E-commerce</option><option>Multiple services / not sure yet</option><option>Marketplace updates</option></select></div>
+        <div class="field"><label for="market">Where are you based?</label><select id="market" name="market"><option value="">Select a market</option><option>India</option><option>United States / Canada</option><option>United Kingdom / Europe</option><option>Middle East</option><option>Asia Pacific</option><option>Other</option></select></div>
+        <div class="field"><label for="budget">Approximate budget</label><select id="budget" name="budget"><option value="">Prefer to discuss</option><option>Under $500 / ₹40,000</option><option>$500–$2,000 / ₹40,000–₹1.6L</option><option>$2,000–$5,000 / ₹1.6L–₹4L</option><option>$5,000+ / ₹4L+</option></select></div>
+        <div class="field full"><label for="details">Tell us a little about the project *</label><textarea id="details" name="details" required placeholder="What are you trying to build or improve?"></textarea></div>
+      </div>
+      <button class="btn form-submit" id="submitProject" type="submit">Send project enquiry ↗</button><div class="form-msg" id="formMsg" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</div>
 <script>
 (function(){
-  var ENDPOINT='https://formspree.io/f/xjywwdgp';
-  var d=document.getElementById('dlg'),f=document.getElementById('f'),em=document.getElementById('em'),msg=document.getElementById('msg'),go=document.getElementById('go');
-  document.getElementById('openForm').onclick=function(){msg.textContent='';d.showModal();em.focus();};
-  document.getElementById('cl').onclick=function(){d.close();};
-  d.addEventListener('click',function(e){if(e.target===d)d.close();});
-  f.addEventListener('submit',function(e){
-    e.preventDefault();
-    var v=em.value.trim();
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){msg.style.color='#ff9b7a';msg.textContent='Please enter a valid email.';return;}
-    if(f.elements._gotcha.value){return;}
-    go.disabled=true;msg.style.color='';msg.textContent='Sending…';
-    fetch(ENDPOINT,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify({email:v})})
-    .then(function(r){if(!r.ok){return r.json().then(function(j){throw new Error((j.errors&&j.errors[0]&&j.errors[0].message)||j.error||('Error '+r.status));},function(){throw new Error('Error '+r.status);});}msg.textContent='Thanks! You’re on the list.';f.reset();})
-    .catch(function(err){msg.style.color='#ff9b7a';msg.textContent='Could not send: '+((err&&err.message)||'unknown error');})
-    .then(function(){go.disabled=false;});
+  var nav=document.getElementById('navLinks'),toggle=document.getElementById('menuToggle');
+  toggle.addEventListener('click',function(){var open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));toggle.textContent=open?'×':'☰';});
+  nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.textContent='☰';});});
+  document.getElementById('year').textContent=new Date().getFullYear();
+  var items=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){var observer=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}});},{threshold:.08});items.forEach(function(el){observer.observe(el);});}else{items.forEach(function(el){el.classList.add('visible');});}
+  document.querySelectorAll('.faq-q').forEach(function(btn){btn.addEventListener('click',function(){var item=btn.parentElement,open=item.classList.toggle('open');btn.setAttribute('aria-expanded',String(open));btn.querySelector('span:last-child').textContent=open?'−':'+';});});
+  var modal=document.getElementById('projectModal'),form=document.getElementById('projectForm'),msg=document.getElementById('formMsg'),submit=document.getElementById('submitProject');
+  function openModal(interest){modal.classList.add('show');document.body.style.overflow='hidden';if(interest){var select=document.getElementById('need');var options=Array.from(select.options);var match=options.find(function(o){return o.text.toLowerCase().indexOf(interest.toLowerCase())!==-1;});if(match)select.value=match.value;}setTimeout(function(){document.getElementById('name').focus();},80);}
+  function closeModal(){modal.classList.remove('show');document.body.style.overflow='';}
+  document.getElementById('openProject').addEventListener('click',function(){openModal();});
+  document.getElementById('closeProject').addEventListener('click',closeModal);
+  modal.addEventListener('click',function(e){if(e.target===modal)closeModal();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.classList.contains('show'))closeModal();});
+  document.querySelectorAll('[data-interest]').forEach(function(el){el.addEventListener('click',function(e){e.preventDefault();openModal(el.getAttribute('data-interest'));});});
+  form.addEventListener('submit',function(e){e.preventDefault();if(form.elements._gotcha.value)return;submit.disabled=true;submit.textContent='Sending…';msg.textContent='Sending your enquiry…';
+    var payload={};new FormData(form).forEach(function(v,k){payload[k]=v;});payload._subject='New Arcnoids project enquiry';
+    fetch('https://formspree.io/f/xjywwdgp',{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(payload)})
+      .then(function(r){if(!r.ok)throw new Error('The enquiry could not be sent right now. Please try again.');msg.textContent='Thanks — your enquiry has been sent. We’ll be in touch.';form.reset();})
+      .catch(function(err){msg.textContent=err.message+' You can also email the team directly.';})
+      .finally(function(){submit.disabled=false;submit.textContent='Send project enquiry ↗';});
   });
-})();
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script>
-(function(){
-  if(!window.THREE){return;}
-  var canvas=document.getElementById('gl');
-  var renderer;
-  try{renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true});}
-  catch(e){canvas.style.display='none';return;}
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
-  var scene=new THREE.Scene();
-  var camera=new THREE.PerspectiveCamera(45,1,.1,100);
-  camera.position.z=7;
-  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var group=new THREE.Group();scene.add(group);
-  var core=new THREE.Mesh(new THREE.IcosahedronGeometry(1.15,1),new THREE.MeshStandardMaterial({color:0x10163a,metalness:.9,roughness:.25,flatShading:true}));
-  group.add(core);
-  var wire=new THREE.Mesh(new THREE.IcosahedronGeometry(1.2,1),new THREE.MeshBasicMaterial({color:0x6fe3ff,wireframe:true,transparent:true,opacity:.35}));
-  group.add(wire);
-  var inner=new THREE.Mesh(new THREE.SphereGeometry(.45,32,32),new THREE.MeshBasicMaterial({color:0xff6b3d}));
-  group.add(inner);
-  var rings=[],specs=[[1.9,.025,5.2,0x6fe3ff,.4,.2],[2.4,.03,4.2,0x6fe3ff,1.2,-.5],[2.9,.02,3.6,0xff6b3d,2.1,.35]];
-  specs.forEach(function(s,i){
-    var m=new THREE.Mesh(new THREE.TorusGeometry(s[0],s[1],12,160,s[2]),new THREE.MeshBasicMaterial({color:s[3]}));
-    m.rotation.x=s[4];m.rotation.y=s[5];m.userData.speed=(i%2?-1:1)*(.25+i*.12);group.add(m);rings.push(m);
-  });
-  var N=500,pos=new Float32Array(N*3);
-  for(var i=0;i<N;i++){var r=4+Math.random()*8,a=Math.random()*6.283,b=Math.acos(2*Math.random()-1);pos[i*3]=r*Math.sin(b)*Math.cos(a);pos[i*3+1]=r*Math.sin(b)*Math.sin(a);pos[i*3+2]=r*Math.cos(b)-2;}
-  var pg=new THREE.BufferGeometry();pg.setAttribute('position',new THREE.BufferAttribute(pos,3));
-  var pts=new THREE.Points(pg,new THREE.PointsMaterial({color:0xaee8ff,size:.03,transparent:true,opacity:.7}));scene.add(pts);
-  scene.add(new THREE.AmbientLight(0x404a80,.8));
-  var l1=new THREE.PointLight(0x6fe3ff,3,20);l1.position.set(4,3,5);scene.add(l1);
-  var l2=new THREE.PointLight(0xff6b3d,2.5,20);l2.position.set(-4,-2,3);scene.add(l2);
-  var mx=0,my=0,tx=0,ty=0;
-  window.addEventListener('pointermove',function(e){tx=e.clientX/window.innerWidth-.5;ty=e.clientY/window.innerHeight-.5;},{passive:true});
-  function resize(){var w=window.innerWidth,h=window.innerHeight;renderer.setSize(w,h,false);camera.aspect=w/Math.max(h,1);var wide=w>800;group.position.x=wide?2.2:0;group.position.y=wide?0:1.4;group.scale.setScalar(wide?1:.7);camera.updateProjectionMatrix();}
-  window.addEventListener('resize',resize);resize();
-  var clock=new THREE.Clock();
-  function tick(){var t=clock.getElapsedTime(),k=reduce?0:1;mx+=(tx-mx)*.05;my+=(ty-my)*.05;core.rotation.y=wire.rotation.y=t*.25*k+mx*1.5;core.rotation.x=wire.rotation.x=t*.12*k+my*1.2;inner.scale.setScalar(1+Math.sin(t*2)*.08*k);rings.forEach(function(r){r.rotation.z+=r.userData.speed*.01*k;});group.rotation.y=mx*.4;group.rotation.x=my*.3;pts.rotation.y=t*.02*k;camera.position.x=mx*.6;camera.position.y=-my*.4;camera.lookAt(0,0,0);renderer.render(scene,camera);requestAnimationFrame(tick);}
-  tick();
 })();
 </script>
 </body>
