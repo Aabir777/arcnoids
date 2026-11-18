@@ -7,6 +7,10 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ("id", "username", "email", "first_name", "last_name", "role", "is_active", "must_change_password")
         read_only_fields = ("id", "is_active", "must_change_password")
+    def validate_role(self, value):
+        if value == User.Role.ADMIN and not (self.instance and self.instance.is_superuser):
+            raise serializers.ValidationError("A second admin account cannot be created from the team editor.")
+        return value
 
 class TeamCreateSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, validators=[validate_password])
