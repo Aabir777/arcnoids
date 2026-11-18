@@ -33,8 +33,6 @@ Django REST Framework backend for the internal Arcnoids workspace.
 All endpoints except health, CSRF bootstrap, login and bootstrap-status require an authenticated session.
 
 ## Deploy
-Deploy with the included Render blueprint. Set CORS_ALLOWED_ORIGINS and CSRF_TRUSTED_ORIGINS to the exact HTTPS frontend origin(s). Set ADMIN_EMAIL and ADMIN_PASSWORD as secret environment variables. After deployment run:
-- python manage.py migrate
-- python manage.py bootstrap_admin
+Deploy with the root-level Render blueprint. Set CORS_ALLOWED_ORIGINS and CSRF_TRUSTED_ORIGINS to the exact HTTPS frontend origin(s). Set ADMIN_EMAIL and ADMIN_PASSWORD as secret environment variables. The container startup runs migrations and the idempotent bootstrap_admin command before starting Gunicorn. Check the Render logs for the owner-created message.
 
 Do not commit production secrets or a .env file. The bootstrap command will not overwrite an existing active admin.
